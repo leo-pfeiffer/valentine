@@ -1,17 +1,16 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Valentine/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Valentine from './components/Valentine.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Valentine
   }
 }
 </script>
@@ -22,7 +21,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  color: #4a00c0;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 </style>
