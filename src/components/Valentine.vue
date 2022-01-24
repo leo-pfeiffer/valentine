@@ -16,20 +16,28 @@ export default {
   },
   data() {
     return {
-      url: 'https://bubbs-quotes.herokuapp.com/quote',
+      quoteURL: 'https://bubbs-quotes.herokuapp.com/daily',
+      nameURL: 'https://bubbs-quotes.herokuapp.com/name',
       quote: null,
-      name: 'Lelo'
+      name: null
     }
   },
   mounted() {
     this.getQuote();
+    this.getName();
   },
   methods: {
     async getQuote() {
-      this.quote = await fetch(this.url)
+      this.quote = await fetch(this.quoteURL)
           .then(res => res.json())
           .then(res => res.quote.quote)
           .catch(() => "I love you!")
+    },
+    async getName() {
+      this.name = await fetch(this.nameURL)
+          .then(res => res.json())
+          .then(res => res.name)
+          .catch(() => "Lelo")
     }
   }
 }
