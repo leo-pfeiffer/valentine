@@ -1,5 +1,6 @@
 <template>
-  <div class="quotation-box">
+  <div class="quotation-box"
+       v-bind:style="{background: bgColor, color: fontColor}">
     <div class="quote">
       <h2>{{ quote }}</h2>
       <p class="name">– {{ name }}</p>
@@ -8,6 +9,17 @@
 </template>
 
 <script>
+
+import {getDailySeed, getRandomIndex, setContrast} from "@/utils/utils";
+
+const COLORS = [
+    [104,115,140], [116,109,142],
+    [115,87,110], [79,60,86],
+    [120,63,63], [176, 99, 86],
+    [225,144,125], [241,201,142],
+    [224,162,104], [145,85,58]
+]
+
 export default {
   name: 'Valentine',
   props: {
@@ -19,12 +31,15 @@ export default {
       quoteURL: 'https://bubbs-quotes.herokuapp.com/daily',
       nameURL: 'https://bubbs-quotes.herokuapp.com/name',
       quote: null,
-      name: null
+      name: null,
+      bgColor: null,
+      fontColor: null,
     }
   },
   mounted() {
     this.getQuote();
     this.getName();
+    this.getColor();
   },
   methods: {
     async getQuote() {
@@ -38,6 +53,12 @@ export default {
           .then(res => res.json())
           .then(res => res.name)
           .catch(() => "Lelo")
+    },
+    getColor() {
+      const seed = getDailySeed();
+      const idx = getRandomIndex(COLORS.length, seed);
+      this.bgColor = `rgb(${COLORS[idx]})`;
+      this.fontColor = setContrast(COLORS[idx]);
     }
   }
 }
