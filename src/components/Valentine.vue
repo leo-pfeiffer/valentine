@@ -28,8 +28,8 @@ export default {
   },
   data() {
     return {
-      quoteURL: 'https://bubbs-quotes.herokuapp.com/daily',
-      nameURL: 'https://bubbs-quotes.herokuapp.com/name',
+      quoteURL: 'https://bubbs-quotes.herokuapp.com/quote/daily',
+      nameURL: 'https://bubbs-quotes.herokuapp.com/author/name',
       quote: null,
       name: null,
       bgColor: null,
